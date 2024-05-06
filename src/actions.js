@@ -7,6 +7,8 @@ const viewDepartments = function () {
 		if (err) {
 			console.error(err);
 		}
+
+		console.log(result.rows);
 	});
 };
 
