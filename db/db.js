@@ -1,5 +1,7 @@
+// require the Pool class from the pg module
 const Pool = require('pg').Pool;
 
+// construct a Pool instance linked to the employees_db db
 const pool = new Pool({
 	user: 'postgres',
 	host: 'localhost',
@@ -8,4 +10,5 @@ const pool = new Pool({
 	port: 5432,
 });
 
+// export the pool instance
 module.exports = pool;
