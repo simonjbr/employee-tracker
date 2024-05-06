@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const pool = require('./db/db');
+const pool = require('./src/db');
 
 // function for inquirer prompt
 const actionMenu = async function () {
@@ -27,7 +27,7 @@ const actionMenu = async function () {
 			continue;
 		}
 
-		
+
 	}
 };
 
