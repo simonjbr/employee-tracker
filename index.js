@@ -19,12 +19,12 @@ const actionMenu = async function () {
 	let hasSelectedQuit = false;
 	
 	// loop to allow user to perform multiple actions
-	while (!hasSelectedQuit) {
+	while(!hasSelectedQuit) {
 		const response = await inquirer.prompt(questions)
-
+	
 		switch (response.action) {
 			case 'View All Departments':
-				actions.viewDepartments();
+				await actions.viewDepartments();
 				break;
 			case 'Quit':
 				hasSelectedQuit = true;
@@ -33,6 +33,7 @@ const actionMenu = async function () {
 				console.log('Invalid action');
 		}
 	}
+
 };
 
 actionMenu();
