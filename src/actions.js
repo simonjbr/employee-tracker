@@ -89,10 +89,10 @@ const addEmployee = async function () {
 		roleArr.push(role.title);
 	}
 
-	// query db for current managers
-	const managers = await pool.query(queries.getManagers);
+	// query db for current employees
+	const managers = await pool.query(queries.getEmployees);
 
-	// loop through query results to create array of managers for inquirer prompt choices
+	// loop through query results to create array of employees for inquirer prompt manager choices
 	const managerArr = ['None'];
 	for (const manager of managers.rows) {
 		managerArr.push(manager.name);
@@ -132,7 +132,7 @@ const addEmployee = async function () {
 		// get manager's employee.id from employeeManagerName
 		let employeeManagerId;
 		if (employeeManagerName !== 'None') {
-			const employeeManagerIdResults = await pool .query(queries.getManagerId, [employeeManagerName]);
+			const employeeManagerIdResults = await pool.query(queries.getEmployeeId, [employeeManagerName]);
 			employeeManagerId = employeeManagerIdResults.rows[0].id;
 		}
 
@@ -140,6 +140,60 @@ const addEmployee = async function () {
 		await pool.query(queries.addEmployee, [firstName, lastName, employeeRoleId, employeeManagerId]);
 
 		console.log(`Added ${firstName} ${lastName} to the database`);
+};
+
+// function to update employee role
+const updateEmployeeRole = async function () {
+	// query db for current employees
+	const employees = await pool.query(queries.getEmployees);
+
+	// loop through query results to create array of employees for inquirer prompt employeeName choices
+	const employeeArr = [];
+	for (const employee of employees.rows) {
+		employeeArr.push(employee.name);
+	}
+
+	// query db for current roles
+	const roles = await pool.query(queries.viewRoles);
+
+	// loop through query results to create array of roles for inquirer prompt role choices
+	const roleArr = [];
+	for (const role of roles.rows) {
+		roleArr.push(role.title);
+	}
+
+	// prompt user for role update information
+	const { employeeName, roleName } = await inquirer
+		.prompt([
+			{
+				type: 'list',
+				message: "Which employee's role do you want to update?",
+				name: 'employeeName',
+				choices: employeeArr,
+			},
+			{
+				type: 'list',
+				message: "To which role do you want to assign the selected employee?",
+				name: 'roleName',
+				choices: roleArr,
+			},
+		]);
+
+	// get employee.id from employeeName
+	const employeeIdResults = await pool.query(queries.getEmployeeId, [employeeName]);
+	employeeId = employeeIdResults.rows[0].id;
+
+	// get role.id from roleName
+	const roleIdResults = await pool.query(queries.getRoleId, [roleName]);
+	const roleId = roleIdResults.rows[0].id;
+
+	// console.log(employeeName, employeeId, roleName, roleId);
+
+	await pool.query(queries.updateEmployeeRole, [roleId, employeeId]);
+
+	console.log(`Updated ${employeeName}'s role`);
+
+
 };
 
 // export each action function
@@ -150,4 +204,5 @@ module.exports = {
 	addDepartment,
 	addRole,
 	addEmployee,
+	updateEmployeeRole,
 }
