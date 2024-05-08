@@ -9,7 +9,14 @@ const viewDepartments = async function () {
 	console.table(result.rows);
 };
 
+// function to print all roles
+const viewRoles = async function () {
+	const result = await pool.query(queries.viewRoles);
+	console.table(result.rows);
+};
+
 // export each action function
 module.exports = {
 	viewDepartments,
+	viewRoles,
 }
