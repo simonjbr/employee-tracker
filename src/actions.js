@@ -21,9 +21,25 @@ const viewEmployees = async function () {
 	console.table(result.rows);
 };
 
+// function to add a department
+const addDepartment = async function () {
+	// prompt for department name
+	const { deptName } = await inquirer.prompt({
+		type: 'input',
+		message: 'What is the name of the department?',
+		name: 'deptName',
+	});
+
+	// query db to add department
+	await pool.query(queries.addDepartment, [deptName]);
+
+	console.log(`Added ${deptName} to the databse`);
+};
+
 // export each action function
 module.exports = {
 	viewDepartments,
 	viewRoles,
 	viewEmployees,
+	addDepartment,
 }
