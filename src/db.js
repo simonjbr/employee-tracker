@@ -1,4 +1,4 @@
-// require the Pool class from the pg module
+// import Pool from the pg module
 const Pool = require('pg').Pool;
 
 // construct a Pool instance linked to the employees_db db

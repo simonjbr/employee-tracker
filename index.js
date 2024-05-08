@@ -1,5 +1,4 @@
 const inquirer = require('inquirer');
-const pool = require('./src/db');
 const actions = require('./src/actions');
 
 // function for inquirer prompt
@@ -20,8 +19,10 @@ const actionMenu = async function () {
 	
 	// loop to allow user to perform multiple actions
 	while(!hasSelectedQuit) {
+		// prompt user with action menu
 		const response = await inquirer.prompt(questions)
 	
+		// switch case to deal with all user responses
 		switch (response.action) {
 			case 'View All Departments':
 				await actions.viewDepartments();
@@ -49,6 +50,7 @@ const actionMenu = async function () {
 				break;
 			default:
 				console.log('Invalid action');
+				break;
 		}
 	}
 

@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const pool = require('./db');
 const queries = require('./queries');
-const cTable = require('console.table');
+require('console.table');
 
 // function to print all departments
 const viewDepartments = async function () {
@@ -187,13 +187,10 @@ const updateEmployeeRole = async function () {
 	const roleIdResults = await pool.query(queries.getRoleId, [roleName]);
 	const roleId = roleIdResults.rows[0].id;
 
-	// console.log(employeeName, employeeId, roleName, roleId);
-
+	// query to update role
 	await pool.query(queries.updateEmployeeRole, [roleId, employeeId]);
 
 	console.log(`Updated ${employeeName}'s role`);
-
-
 };
 
 // export each action function
