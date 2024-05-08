@@ -29,6 +29,9 @@ const actionMenu = async function () {
 			case 'View All Roles':
 				await actions.viewRoles();
 				break;
+			case 'View All Employees':
+				await actions.viewEmployees();
+				break;
 			case 'Quit':
 				hasSelectedQuit = true;
 				break;

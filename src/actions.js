@@ -15,8 +15,15 @@ const viewRoles = async function () {
 	console.table(result.rows);
 };
 
+// function to print all employees
+const viewEmployees = async function () {
+	const result = await pool.query(queries.viewEmployees);
+	console.table(result.rows);
+};
+
 // export each action function
 module.exports = {
 	viewDepartments,
 	viewRoles,
+	viewEmployees,
 }
