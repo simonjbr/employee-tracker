@@ -38,6 +38,9 @@ const actionMenu = async function () {
 			case 'Add Role':
 				await actions.addRole();
 				break;
+			case 'Add Employee':
+				await actions.addEmployee();
+				break;
 			case 'Quit':
 				hasSelectedQuit = true;
 				break;
