@@ -23,7 +23,7 @@ From there, in order to create and seed the database run the following commands:
 - `\i seeds.sql`
 - `\q` to exit the shell
 
-Finally, update the values for `user` and/or `password` in the Pool constructor in `/src/db.js` to your desired PostgreSQL username and password.
+Finally, update the values for `user` and/or `password` in the `Pool` constructor in `/src/db.js` to your desired PostgreSQL username and password.
 
 ## Usage
 
@@ -42,7 +42,7 @@ The user will then be greeted with the Main Menu where they can choose from the 
 `* these actions will require further inputs to apply changes to the database`
 
 Find the video walkthrough here:
-[Video Walkthrough](https://drive.google.com/file/d/XXXXXX)
+[Video Walkthrough](https://drive.google.com/file/d/1nsxws6fh27Z8UBewEeIBAznvOH13Eto_/view)
 
 ## Credits
 
